@@ -12,7 +12,7 @@ export default async function Main() {
 
   return (
     <>
-      <div className="bg-white w-full h-[100vh] text-black">
+      <div className="bg-white w-full h-full text-black">
         {/* Navbar */}
         <div className="w-full h-[70px] bg-[#b9b9b9] flex justify-center items-center">
           <ul className="flex justify-between w-full p-5">
@@ -36,7 +36,7 @@ export default async function Main() {
         {/* Shoe Cards Grid */}
         <div className="grid grid-cols-4 gap-4 p-5">
           {data.shoes.map((shoe, index) => (
-            <div key={index} className="border p-4 rounded-lg shadow-lg">
+            <div key={index} className="bg-[#d8d8d8] p-4 rounded-lg shadow-lg">
               <img
                 src={shoe.image}
                 alt={shoe.name}
