@@ -1,0 +1,30 @@
+{
+    "shoes": [
+      {
+        "image": "https://example.com/images/nike_airmax.jpg",
+        "name": "Nike Air Max 270",
+        "description": "A stylish and comfortable running shoe with a large Air unit for maximum cushioning."
+      },
+      {
+        "image": "https://example.com/images/adidas_ultraboost.jpg",
+        "name": "Adidas UltraBoost 22",
+        "description": "A premium running shoe featuring Boost technology for superior energy return and comfort."
+      },
+      {
+        "image": "https://example.com/images/puma_rsx.jpg",
+        "name": "Puma RS-X",
+        "description": "A retro-inspired sneaker with bold colors and a chunky sole for a trendy look."
+      },
+      {
+        "image": "https://example.com/images/jordan_1.jpg",
+        "name": "Air Jordan 1 Retro",
+        "description": "An iconic basketball shoe known for its timeless design and premium leather construction."
+      },
+      {
+        "image": "https://example.com/images/newbalance_990.jpg",
+        "name": "New Balance 990v5",
+        "description": "A classic running shoe with a perfect balance of cushioning and stability, made in the USA."
+      }
+    ]
+  }
+  
