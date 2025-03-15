@@ -35,7 +35,7 @@ export default async function Main() {
 
         {/* Shoe Cards Grid */}
         <div className="grid grid-cols-4 gap-4 p-5">
-          {data.shoes.map((shoe, index) => (
+          {data.shoes.map((shoe: any, index:any) => (
             <div key={index} className="bg-[#d8d8d8] p-4 rounded-lg shadow-lg">
               <img
                 src={shoe.image}
