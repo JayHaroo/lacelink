@@ -52,12 +52,12 @@ export default function Main() {
           </ul>
         </div>
 
-        <div className="bg-white h-[100vh] text-black p-5">
-          <div className="bg-[#cacaca] w-[15rem] rounded-xl">
-            <ul className="flex flex-col text-center p-3">
+        <div className="bg-white h-[100vh] w-[100vh] justify-evenly text-black p-5">
+          <div className="bg-[#cacaca] w-[15rem] rounded-xl mr-5">
+            <ul className="flex">
               {shoes.map((shoes) => (
-                <li key={shoes._id} className="justify-items-center">
-                  <img src={shoes.image} alt={shoes.name} className="w-[200px] h-[120px]"/>
+                <li key={shoes._id} className="justify-items-center text-center justify-evenly p-5 mr">
+                  <img src={shoes.image} alt={shoes.name} className="w-[200px] h-[200px] object-fill"/>
                   <p className="font-medium text-2xl">{shoes.name}</p>
                   <p>By: {shoes.brand}</p>
                   <p className="text-[2vh]">{shoes.description}</p>
