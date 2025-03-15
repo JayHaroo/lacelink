@@ -52,17 +52,19 @@ export default function Main() {
           </ul>
         </div>
 
-        <div className="bg-white h-[100vh] text-black">
-          <h1>Shoes</h1>
-          <ul>
-            {shoes.map((shoes) => (
-              <li key={shoes._id}>
-                <img src={shoes.image} alt={shoes.name} width="100" />
-                <p>{shoes.name}</p>
-                <p>{shoes.description}</p>
-              </li>
-            ))}
-          </ul>
+        <div className="bg-white h-[100vh] text-black p-5">
+          <div className="bg-[#cacaca] w-[15rem] rounded-xl">
+            <ul className="flex flex-col text-center p-3">
+              {shoes.map((shoes) => (
+                <li key={shoes._id} className="justify-items-center">
+                  <img src={shoes.image} alt={shoes.name} className="w-[200px] h-[120px]"/>
+                  <p className="font-medium text-2xl">{shoes.name}</p>
+                  <p>By: {shoes.brand}</p>
+                  <p className="text-[2vh]">{shoes.description}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* 
