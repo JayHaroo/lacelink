@@ -1,14 +1,33 @@
+"use client";
+
 import { promises as fs } from "fs";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { GoPlusCircle } from "react-icons/go";
 
-export default async function Main() {
-  // Read and parse the JSON file
-  const file = await fs.readFile(
-    process.cwd() + "/public/data/shoes.json",
-    "utf8"
-  );
-  const data = JSON.parse(file);
+export default function Main() {
+  // // Read and parse the JSON file
+  // const file = await fs.readFile(
+  //   process.cwd() + "/public/data/shoes.json",
+  //   "utf8"
+  // );
+  // const data = JSON.parse(file);
+  const [shoes, setShoes] = useState([]);
+
+  useEffect(() => {
+    const fetchShoes = async () => {
+      try {
+        const response = await fetch("/api/getAllData"); // Adjust URL if necessary
+        const data = await response.json();
+        setShoes(data);
+        console.log(shoes);
+      } catch (error) {
+        console.error("Error fetching shoes:", error);
+      }
+    };
+
+    fetchShoes();
+  }, []);
 
   return (
     <>
@@ -33,7 +52,21 @@ export default async function Main() {
           </ul>
         </div>
 
-        {/* Shoe Cards Grid */}
+        <div className="bg-white h-[100vh] text-black">
+          <h1>Shoes</h1>
+          <ul>
+            {shoes.map((shoes) => (
+              <li key={shoes._id}>
+                <img src={shoes.image} alt={shoes.name} width="100" />
+                <p>{shoes.name}</p>
+                <p>{shoes.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 
+        Shoe Cards Grid
         <div className="grid grid-cols-4 gap-4 p-5">
           {data.shoes.map((shoe: any, index:any) => (
             <div key={index} className="bg-[#d8d8d8] p-4 rounded-lg shadow-lg object-center">
@@ -46,7 +79,7 @@ export default async function Main() {
               <p className="text-sm text-gray-600">{shoe.description}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );
