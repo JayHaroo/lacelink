@@ -46,9 +46,11 @@ export default function Main() {
                 </div>
               </Link>
             </li>
-            <li className="flex items-center cursor-pointer">
-              <div className="p-1">Create a Post</div>
-              <GoPlusCircle size={25} />
+            <li className="flex cursor-pointer">
+              <Link href="/Create" className="flex items-center">
+                <div className="p-1">Create a Post</div>
+                <GoPlusCircle size={25} />
+              </Link>
             </li>
           </ul>
         </div>
@@ -57,10 +59,13 @@ export default function Main() {
         <div className="p-5">
           <div className="grid grid-cols-4 gap-7">
             {shoes.map((shoe) => (
-              <div key={shoe._id} className="bg-[#cacaca] p-4 rounded-xl shadow-lg text-center">
-                <img 
-                  src={shoe.image} 
-                  alt={shoe.name} 
+              <div
+                key={shoe._id}
+                className="bg-[#cacaca] p-4 rounded-xl shadow-lg text-center"
+              >
+                <img
+                  src={shoe.image}
+                  alt={shoe.name}
                   className="w-full h-40 object-cover rounded-md"
                 />
                 <p className="font-medium text-2xl mt-2">{shoe.name}</p>
