@@ -5,7 +5,15 @@ import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
 
 export default function Main() {
-  const [shoes, setShoes] = useState([]);
+  interface Shoe {
+    _id: string;
+    name: string;
+    brand: string;
+    description: string;
+    image: string;
+  }
+
+  const [shoes, setShoes] = useState<Shoe[]>([]);
 
   useEffect(() => {
     const fetchShoes = async () => {
