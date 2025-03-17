@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 
@@ -12,15 +11,17 @@ export default function Create() {
   });
   const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage("");
 
-    const response = await fetch("/api/shoes", {
+    const response = await fetch("/api/saveData", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -63,40 +64,40 @@ export default function Create() {
           <h2 className="text-xl font-bold text-center mb-4">Add New Shoe</h2>
           {message && <p className="text-center text-green-500">{message}</p>}
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              name="imageLink"
+            <input
+              type="text"
+              name="image"
               value={formData.image}
               onChange={handleChange}
-              className="border p-2 rounded w-full" 
-              placeholder="Image Link" 
+              className="border p-2 rounded w-full"
+              placeholder="Image Link"
             />
-            <input 
-              type="text" 
-              name="shoeName"
+            <input
+              type="text"
+              name="name"
               value={formData.name}
               onChange={handleChange}
-              className="border p-2 rounded w-full" 
-              placeholder="Shoe Name" 
+              className="border p-2 rounded w-full"
+              placeholder="Shoe Name"
             />
-            <input 
-              type="text" 
-              name="shoeBrand"
+            <input
+              type="text"
+              name="brand"
               value={formData.brand}
               onChange={handleChange}
-              className="border p-2 rounded w-full" 
-              placeholder="Shoe Brand" 
+              className="border p-2 rounded w-full"
+              placeholder="Shoe Brand"
             />
-            <textarea 
-              name="shoeDescription"
+            <textarea
+              name="description"
               value={formData.description}
               onChange={handleChange}
-              className="border p-2 rounded w-full" 
-              placeholder="Shoe Description" 
+              className="border p-2 rounded w-full"
+              placeholder="Shoe Description"
               rows="3"
             ></textarea>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
             >
               Submit

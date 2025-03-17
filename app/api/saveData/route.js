@@ -7,9 +7,9 @@ export async function POST(req) {
     });
 
     try {
-        const { imageLink, shoeName, shoeBrand, shoeDescription } = await req.json();
+        const { image, name, brand, description } = await req.json();
 
-        if (!imageLink || !shoeName || !shoeBrand || !shoeDescription) {
+        if (!image || !name || !brand || !description) {
             return new Response(JSON.stringify({ message: "All fields are required!" }), { status: 400 });
         }
 
@@ -17,7 +17,7 @@ export async function POST(req) {
         const database = client.db("lacelink");
         const collection = database.collection("shoes");
 
-        const newShoe = { imageLink, shoeName, shoeBrand, shoeDescription, createdAt: new Date() };
+        const newShoe = { image, name, brand, description};
         await collection.insertOne(newShoe);
 
         return new Response(JSON.stringify({ message: "Shoe added successfully!" }), { status: 201 });
