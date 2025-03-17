@@ -1,17 +1,10 @@
 "use client";
 
-import { promises as fs } from "fs";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
 
 export default function Main() {
-  // // Read and parse the JSON file
-  // const file = await fs.readFile(
-  //   process.cwd() + "/public/data/shoes.json",
-  //   "utf8"
-  // );
-  // const data = JSON.parse(file);
   const [shoes, setShoes] = useState([]);
 
   useEffect(() => {
@@ -31,7 +24,7 @@ export default function Main() {
 
   return (
     <>
-      <div className="bg-white w-full h-full text-black">
+      <div className="bg-white w-full min-h-screen text-black">
         {/* Navbar */}
         <div className="w-full h-[70px] bg-[#b9b9b9] flex justify-center items-center">
           <ul className="flex justify-between w-full p-5">
@@ -52,36 +45,23 @@ export default function Main() {
           </ul>
         </div>
 
-        <div className="bg-white h-[100vh] w-[100vh] justify-evenly text-black p-5">
-          <div className="bg-[#cacaca] w-[15rem] rounded-xl mr-5">
-            <ul className="flex">
-              {shoes.map((shoes) => (
-                <li key={shoes._id} className="justify-items-center text-center justify-evenly p-5 mr">
-                  <img src={shoes.image} alt={shoes.name} className="w-[200px] h-[200px] object-fill"/>
-                  <p className="font-medium text-2xl">{shoes.name}</p>
-                  <p>By: {shoes.brand}</p>
-                  <p className="text-[2vh]">{shoes.description}</p>
-                </li>
-              ))}
-            </ul>
+        {/* Shoe Cards Grid */}
+        <div className="p-5">
+          <div className="grid grid-cols-4 gap-7">
+            {shoes.map((shoe) => (
+              <div key={shoe._id} className="bg-[#cacaca] p-4 rounded-xl shadow-lg text-center">
+                <img 
+                  src={shoe.image} 
+                  alt={shoe.name} 
+                  className="w-full h-40 object-cover rounded-md"
+                />
+                <p className="font-medium text-2xl mt-2">{shoe.name}</p>
+                <p>By: {shoe.brand}</p>
+                <p className="text-sm mt-1">{shoe.description}</p>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* 
-        Shoe Cards Grid
-        <div className="grid grid-cols-4 gap-4 p-5">
-          {data.shoes.map((shoe: any, index:any) => (
-            <div key={index} className="bg-[#d8d8d8] p-4 rounded-lg shadow-lg object-center">
-              <img
-                src={shoe.image}
-                alt={shoe.name}
-                className="w-full h-40 object-cover rounded-md"
-              />
-              <h2 className="text-lg font-bold mt-2">{shoe.name}</h2>
-              <p className="text-sm text-gray-600">{shoe.description}</p>
-            </div>
-          ))}
-        </div> */}
       </div>
     </>
   );
