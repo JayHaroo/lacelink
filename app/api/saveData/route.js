@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Shoe from "@/models/shoe"; // Import the Mongoose model
+import Shoe from "../../models/shoe";
 
 // Connect to MongoDB
 const connectDB = async () => {
