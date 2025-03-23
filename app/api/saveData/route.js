@@ -1,29 +1,34 @@
-import { MongoClient } from "mongodb";
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import Shoe from "@/models/shoe"; // Import the Mongoose model
+
+// Connect to MongoDB
+const connectDB = async () => {
+  if (mongoose.connection.readyState === 1) return;
+  await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
 
 export async function POST(req) {
-    const client = new MongoClient(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+  await connectDB();
 
-    try {
-        const { image, name, brand, description } = await req.json();
+  try {
+    const { image, name, brand, description } = await req.json();
 
-        if (!image || !name || !brand || !description) {
-            return new Response(JSON.stringify({ message: "All fields are required!" }), { status: 400 });
-        }
-
-        await client.connect();
-        const database = client.db("lacelink");
-        const collection = database.collection("shoes");
-
-        const newShoe = { image, name, brand, description};
-        await collection.insertOne(newShoe);
-
-        return new Response(JSON.stringify({ message: "Shoe added successfully!" }), { status: 201 });
-    } catch (error) {
-        return new Response(JSON.stringify({ message: "Something went wrong!" }), { status: 500 });
-    } finally {
-        await client.close();
+    // Validate required fields
+    if (!image || !name || !brand || !description) {
+      return NextResponse.json({ message: "All fields are required!" }, { status: 400 });
     }
+
+    // Create a new shoe entry using the Mongoose model
+    const newShoe = new Shoe({ image, name, brand, description });
+    await newShoe.save();
+
+    return NextResponse.json({ message: "Shoe added successfully!" }, { status: 201 });
+  } catch (error) {
+    console.error("Error saving shoe:", error);
+    return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+  }
 }
